@@ -8,7 +8,7 @@ const AboutSection = ({ handleFeatureClick }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <img  className="w-full rounded-2xl shadow-xl" alt="Unit Strength company and manufacturing" src="https://images.unsplash.com/photo-1589793463357-5fb813435467" />
+            <img  className="w-full rounded-2xl shadow-xl" alt="Unit Strength company and manufacturing" src="/Australian made.png" />
           </div>
           
           <div>

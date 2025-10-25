@@ -17,7 +17,7 @@ const PricingCard = ({ title, description, imageSrc, alt, features, price, oldPr
     <h3 className="text-2xl font-bold mb-4">{title}</h3>
     <p className={popular ? "text-gray-300 mb-6" : "text-gray-600 mb-6"}>{description}</p>
     
-    <img  className="w-full h-48 object-cover rounded-lg mb-6" alt={alt} src="https://images.unsplash.com/photo-1599472696777-95cab5e0f891" />
+    <img  className="w-full h-48 object-cover rounded-lg mb-6" alt={alt} src="/60 by 60.jpg" />
     
     <div className={`mb-6 text-sm space-y-1 ${!popular && 'text-gray-600'}`}>{features.map((feature, index) => <p key={index}>{feature}</p>)}</div>
     

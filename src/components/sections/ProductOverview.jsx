@@ -23,7 +23,7 @@ const ProductOverview = () => {
             <img  
               className="w-full rounded-2xl shadow-xl"
               alt="UNIT ONE Pro detailed view"
-             src="https://images.unsplash.com/photo-1673922553727-fe98ea114d5e" />
+             src="/60 by 60.jpg" />
           </div>
           
           <div className="space-y-8">

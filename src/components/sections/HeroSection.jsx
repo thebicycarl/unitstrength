@@ -5,19 +5,18 @@ import { ArrowRight } from 'lucide-react';
 
 const HeroSection = ({ handleFeatureClick }) => {
   return (
-    <section className="pt-16 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
+    <section className="pt-16 min-h-[60vh] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
       <video 
         autoPlay 
         loop 
         muted 
         playsInline 
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.70] rotate-[0.5deg] translate-x-6 md:translate-x-9 translate-y-2 md:translate-y-5"
         poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?fit=crop&w=1950&q=80"
       >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-man-lifting-weights-in-the-gym-2030-large.mp4" type="video/mp4" />
+        <source src="/Cut clip v2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 bg-brand-primary opacity-80"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
@@ -27,15 +26,13 @@ const HeroSection = ({ handleFeatureClick }) => {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 text-white">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 text-white -mt-19.8">
               The Ultimate
               <br />
               <span className="gradient-text">Enclosed Home Gym</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-brand-secondary max-w-3xl mx-auto mb-8">
-              Transform your home and unleash your fitness potential with the UNIT ONE Pro
-            </p>
+            
             
             <Button 
               onClick={() => {
