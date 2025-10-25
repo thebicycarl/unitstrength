@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 12%; /* Primary color #001f47 converted to HSL */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 12%;
+  --primary: 0 0% 12%; /* Primary color #001f47 */
+  --primary-foreground: 0 0% 97%; /* Secondary color #f8f8f8 */
+  --secondary: 0 0% 97%; /* Secondary color #f8f8f8 */
+  --secondary-foreground: 0 0% 12%;
+  --muted: 0 0% 97%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 97%;
+  --accent-foreground: 0 0% 12%;
+  --destructive: 12 84% 52%; /* Accent 1 #ec4e20 */
+  --destructive-foreground: 0 0% 97%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 0 0% 12%;
+  --radius: 0.5rem;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply bg-white text-gray-900;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 31, 71, 0.15);
+}
+
+.feature-card {
+  background: linear-gradient(145deg, #f8f8f8 0%, #e8e8e8 100%);
+  border: 1px solid rgba(0, 31, 71, 0.1);
+}
+
+.pricing-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.pricing-card.featured {
+  background: linear-gradient(145deg, #001f47 0%, #2a3439 100%);
+  border: 2px solid #ec4e20;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #002a5c 0%, #3a4449 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 31, 71, 0.3);
+}
+
+.section-divider {
+  background: linear-gradient(90deg, transparent 0%, #e8e8e8 50%, transparent 100%);
+  height: 1px;
+}
