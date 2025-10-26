@@ -1,18 +1,44 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const HeroSection = ({ handleFeatureClick }) => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleCanPlay = () => setIsVideoLoaded(true);
+      const handleLoadedData = () => setIsVideoLoaded(true);
+      
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('loadeddata', handleLoadedData);
+      
+      return () => {
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('loadeddata', handleLoadedData);
+      };
+    }
+  }, []);
+
   return (
     <section className="pt-16 min-h-[60vh] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
+      {/* Video placeholder/loading state */}
+      {!isVideoLoaded && (
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#969694] to-[#959288]" />
+      )}
+      
       <video 
+        ref={videoRef}
         autoPlay 
         loop 
         muted 
-        playsInline 
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0"
-        poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?fit=crop&w=1950&q=80"
+        playsInline
+        preload="auto"
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0 transition-opacity duration-500"
+        style={{ opacity: isVideoLoaded ? 1 : 0 }}
       >
         <source src="/Cut clip v2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
