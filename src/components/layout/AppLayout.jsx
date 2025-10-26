@@ -21,6 +21,19 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
     }, 50);
   };
 
+  const handleLogoHoverEnter = () => {
+    // Only enable hover effect on non-touch devices (desktop)
+    if (window.innerWidth >= 768) {
+      setIsLogoHovered(true);
+    }
+  };
+
+  const handleLogoHoverLeave = () => {
+    if (window.innerWidth >= 768) {
+      setIsLogoHovered(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
@@ -29,8 +42,8 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
             <div className="flex items-center">
               <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                onMouseEnter={() => setIsLogoHovered(true)}
-                onMouseLeave={() => setIsLogoHovered(false)}
+                onMouseEnter={handleLogoHoverEnter}
+                onMouseLeave={handleLogoHoverLeave}
                 className="flex items-center space-x-2 transition-opacity cursor-pointer h-full max-h-full"
               >
                 <img 
