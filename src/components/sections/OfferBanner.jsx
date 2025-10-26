@@ -8,7 +8,7 @@ const OfferBanner = () => {
           <p className="text-lg font-semibold">
             New product offer: $1000 off plus free install!
           </p>
-          <p className="text-sm opacity-90">Only available for Toowoomba region</p>
+          <p className="text-sm opacity-90">Only available for Toowoomba region, while stocks last.</p>
         </div>
       </div>
     </section>

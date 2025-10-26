@@ -10,15 +10,14 @@ const ProductOverview = () => {
   ];
 
   return (
-    <section className="py-20 bg-brand-secondary">
+    <section className="py-12 bg-brand-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-lg text-brand-tertiary mb-2">Introducing the ultimate enclosed home gym:</p>
-          <h2 className="text-4xl font-bold mb-4 text-brand-primary">UNIT ONE Pro</h2>
-          <p className="text-xl text-brand-tertiary">Transform your home and unleash your fitness potential with the UNIT ONE Pro</p>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-brand-primary">UNIT ONE Pro</h2>
+          <p className="text-lg md:text-xl text-brand-tertiary">Transform your home and unleash your fitness potential</p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <img  
               className="w-full rounded-2xl shadow-xl"
@@ -26,15 +25,15 @@ const ProductOverview = () => {
              src="/hinges.jpg" />
           </div>
           
-          <div className="space-y-8">
+          <div className="space-y-4 md:space-y-5">
             {overviewPoints.map((point, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-[#1b998b] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <CheckCircle className="w-5 h-5 text-white" />
+              <div key={index} className="flex items-start space-x-3">
+                <div className="w-7 h-7 bg-[#1b998b] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <CheckCircle className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2 text-brand-primary">{point.title}</h3>
-                  <p className="text-brand-tertiary">{point.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-1 text-brand-primary">{point.title}</h3>
+                  <p className="text-sm md:text-base text-brand-tertiary">{point.description}</p>
                 </div>
               </div>
             ))}

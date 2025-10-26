@@ -132,7 +132,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                     <span>${delivery.toLocaleString()}</span>
                   </div>
                   <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
-                    <span>First 10 Units Discount</span>
+                    <span>New Product Discount</span>
                     <span>- ${discount.toLocaleString()}</span>
                   </div>
                    <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
@@ -223,7 +223,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                         <span>${delivery.toLocaleString()}</span>
                       </div>
                       <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
-                        <span>First 10 Units Discount</span>
+                        <span>New Product Discount</span>
                         <span>- ${discount.toLocaleString()}</span>
                       </div>
                       <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
