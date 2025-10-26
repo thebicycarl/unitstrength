@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <span className="text-lg font-semibold mb-4 block">Contact</span>
             <div className="space-y-2">
-              <p className="text-brand-secondary/80">0432 923 571</p>
+              <p className="text-brand-secondary/80">+61 432 923 571 (Whatsapp preferred)</p>
               <p className="text-brand-secondary/80">carl@unitstrength.com.au</p>
               <p className="text-brand-secondary/80">Toowoomba, QLD</p>
             </div>

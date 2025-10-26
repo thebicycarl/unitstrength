@@ -214,11 +214,11 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
             <h3 className="text-xl font-bold mb-3 text-brand-primary">
               Want a different cabinetry color or other customisation?
             </h3>
-            <p className="text-base mb-4 text-brand-tertiary">Get in touch - we can design and fitout a UNIT to suit your exact needs</p>
+            <p className="text-base mb-4 text-brand-tertiary">We can design and fitout a UNIT to suit your exact needs</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-brand-accent2" />
-                <span className="text-base text-brand-tertiary">0432 923 571</span>
+                <span className="text-base text-brand-tertiary">+61 432 923 571 (Whatsapp preferred)</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-brand-accent2" />
@@ -229,8 +229,8 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
         </div>
 
         {/* Mobile Carousel */}
-        <div className="md:hidden">
-          <div className="flex items-center justify-center space-x-3 mb-4">
+        <div className="md:hidden -mx-4">
+          <div className="flex items-center justify-center space-x-3 mb-4 px-4">
             <Button
               variant="ghost"
               size="icon"
@@ -273,7 +273,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
           <div 
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-8 pt-4"
+            className="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-4 pt-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {packages.map((pkg, index) => (
@@ -332,17 +332,17 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
               >
                 <div className="flex-1 flex flex-col justify-center">
                   <h3 className="text-xl font-bold mb-4">Customisation</h3>
-                  <p className="text-sm text-gray-300 mb-4">
+                  <p className="text-sm text-brand-accent2 mb-4">
                     Want a different cabinetry color or other customisation?
                   </p>
-                  <p className="text-xs text-gray-400 mb-6">
-                    Get in touch - we can design and fitout a UNIT to suit your exact needs
+                  <p className="text-xs text-white mb-6">
+                    We can design and fitout a UNIT to suit your exact needs
                   </p>
                   
                   <div className="space-y-4 mb-6">
                     <div className="flex flex-col items-center space-y-2">
                       <Phone className="w-5 h-5 text-brand-accent2" />
-                      <span className="text-sm text-white">0432 923 571</span>
+                      <span className="text-sm text-white">+61 432 923 571 (Whatsapp preferred)</span>
                     </div>
                     <div className="flex flex-col items-center space-y-2">
                       <Mail className="w-5 h-5 text-brand-accent2" />
