@@ -158,7 +158,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                   </div>
                 )}
                 
-                <Button onClick={handleProceedToPayment} className="w-full mt-6 btn-primary text-white" size="lg" disabled={!isFormValid}>
+                <Button onClick={handleProceedToPayment} className="w-full mt-6 btn-primary text-white hover:!bg-[#1b998b]" size="lg" disabled={!isFormValid}>
                   <CreditCard className="w-5 h-5 mr-2" />
                   Proceed to Payment
                 </Button>

@@ -25,40 +25,34 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
                 className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
               >
                 <img 
-                  src="/logo-unit.png" 
+                  src="/UNIT-Strength-logo.png" 
                   alt="UNIT" 
-                  className="h-6 w-auto"
+                  className="h-52 w-auto"
                 />
-                <span className="text-2xl font-bold gradient-text">Strength</span>
+
               </button>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('features')}
-                className="text-brand-tertiary hover:text-brand-accent1 transition-colors"
+                className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
               >
                 Features
               </button>
               <button 
                 onClick={() => scrollToSection('pricing')}
-                className="text-brand-tertiary hover:text-brand-accent1 transition-colors"
+                className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
               >
                 Pricing
               </button>
-               <button 
-                onClick={() => scrollToSection('checkout')}
-                className="text-brand-tertiary hover:text-brand-accent1 transition-colors"
-              >
-                Purchase
-              </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-brand-tertiary hover:text-brand-accent1 transition-colors"
+                className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
               >
                 About
               </button>
-              <Button onClick={() => scrollToSection('pricing')} className="btn-primary text-white">
+              <Button onClick={() => scrollToSection('pricing')} className="btn-primary text-white hover:!bg-[#1b998b]">
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Shop UNIT ONE Pro
               </Button>
@@ -79,32 +73,26 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
           <div className="px-4 py-6 space-y-4">
             <button 
               onClick={() => handleMobileNavClick('features')}
-              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:text-brand-accent1 transition-colors py-2"
+              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               Features
             </button>
             <button 
               onClick={() => handleMobileNavClick('pricing')}
-              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:text-brand-accent1 transition-colors py-2"
+              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               Pricing
             </button>
             <button 
-              onClick={() => handleMobileNavClick('checkout')}
-              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:text-brand-accent1 transition-colors py-2"
-            >
-              Purchase
-            </button>
-            <button 
               onClick={() => handleMobileNavClick('about')}
-              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:text-brand-accent1 transition-colors py-2"
+              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               About
             </button>
             <div className="pt-4 border-t border-gray-200">
               <Button 
                 onClick={() => handleMobileNavClick('pricing')} 
-                className="w-full btn-primary text-white"
+                className="w-full btn-primary text-white hover:!bg-[#1b998b]"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Shop UNIT ONE Pro

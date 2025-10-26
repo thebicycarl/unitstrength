@@ -27,7 +27,7 @@ const PricingCard = ({ title, description, imageSrc, alt, features, price, oldPr
       <p className={`text-sm ${popular ? 'text-gray-300' : 'text-gray-500'}`}>New product offer: $1000 off, free installation for first 10 units sold</p>
     </div>
     
-    <Button onClick={handleFeatureClick} className={`w-full ${popular ? 'bg-brand-accent1 hover:bg-brand-accent1/90 text-white' : 'btn-primary text-white'}`}>Buy now</Button>
+    <Button onClick={handleFeatureClick} className={`w-full ${popular ? 'bg-brand-accent1 hover:!bg-[#1b998b] text-white' : 'btn-primary text-white hover:!bg-[#1b998b]'}`}>Buy now</Button>
   </motion.div>
 );
 
@@ -162,7 +162,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                   </div>
                 </div>
                 
-                <Button onClick={() => handleBuyNow(pkg)} className={`w-full text-sm py-2 mt-auto ${pkg.popular ? 'bg-brand-accent1 hover:bg-brand-accent1/90 text-white' : 'bg-brand-accent1 hover:bg-brand-accent1/90 text-white'}`}>
+                <Button onClick={() => handleBuyNow(pkg)} className={`w-full text-sm py-2 mt-auto ${pkg.popular ? 'bg-brand-accent1 hover:!bg-[#1b998b] text-white' : 'bg-brand-accent1 hover:!bg-[#1b998b] text-white'}`}>
                   Buy now
                 </Button>
               </div>
@@ -251,7 +251,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                     </div>
                   </div>
                   
-                  <Button onClick={() => handleBuyNow(pkg)} className={`w-full text-sm py-2 mt-auto ${pkg.popular ? 'bg-brand-accent1 hover:bg-brand-accent1/90 text-white' : 'bg-brand-accent1 hover:bg-brand-accent1/90 text-white'}`}>
+                  <Button onClick={() => handleBuyNow(pkg)} className={`w-full text-sm py-2 mt-auto ${pkg.popular ? 'bg-brand-accent1 hover:!bg-[#1b998b] text-white' : 'bg-brand-accent1 hover:!bg-[#1b998b] text-white'}`}>
                     Buy now
                   </Button>
                 </div>

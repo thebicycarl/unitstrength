@@ -23,13 +23,13 @@ const ProductOverview = () => {
             <img  
               className="w-full rounded-2xl shadow-xl"
               alt="UNIT ONE Pro detailed view"
-             src="/60 by 60.jpg" />
+             src="/hinges.jpg" />
           </div>
           
           <div className="space-y-8">
             {overviewPoints.map((point, index) => (
               <div key={index} className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-brand-accent1 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <div className="w-8 h-8 bg-[#1b998b] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <CheckCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>

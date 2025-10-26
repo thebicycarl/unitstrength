@@ -33,14 +33,11 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #001f47;
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
+  background: #001f47;
 }
 
 .card-hover {
@@ -53,33 +50,33 @@ body {
 }
 
 .feature-card {
-  background: linear-gradient(145deg, #f8f8f8 0%, #e8e8e8 100%);
+  background: #f8f8f8;
   border: 1px solid rgba(0, 31, 71, 0.1);
 }
 
 .pricing-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+  background: #ffffff;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
 .pricing-card.featured {
-  background: linear-gradient(145deg, #001f47 0%, #2a3439 100%);
+  background: #001f47;
   border: 2px solid #ec4e20;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #001f47 0%, #2a3439 100%);
+  background: #001f47;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #002a5c 0%, #3a4449 100%);
+  background: #001f47;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 31, 71, 0.3);
 }
 
 .section-divider {
-  background: linear-gradient(90deg, transparent 0%, #e8e8e8 50%, transparent 100%);
+  background: #e8e8e8;
   height: 1px;
 }

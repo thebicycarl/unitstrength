@@ -136,7 +136,7 @@ const PaymentForm = ({
       <Button 
         type="submit" 
         disabled={!stripe || !elements || !isComplete || isProcessing}
-        className="w-full btn-primary text-white"
+        className="w-full btn-primary text-white hover:!bg-[#1b998b]"
         size="lg"
       >
         {isProcessing ? (

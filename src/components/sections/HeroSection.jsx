@@ -11,7 +11,7 @@ const HeroSection = ({ handleFeatureClick }) => {
         loop 
         muted 
         playsInline 
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.70] rotate-[0.5deg] translate-x-6 md:translate-x-9 translate-y-2 md:translate-y-5"
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-6 md:translate-x-10 -translate-y-[15px] md:translate-y-0"
         poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?fit=crop&w=1950&q=80"
       >
         <source src="/Cut clip v2.mp4" type="video/mp4" />
@@ -26,10 +26,10 @@ const HeroSection = ({ handleFeatureClick }) => {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 text-white -mt-19.8">
-              The Ultimate
+            <h1 className="text-5xl md:text-7xl font-black mb-6 -mt-19.8 -translate-x-1">
+              <span className="gradient-text [text-shadow:0_3px_8px_rgba(255,255,255,0.5)]">The Ultimate</span>
               <br />
-              <span className="gradient-text">Enclosed Home Gym</span>
+              <span className="text-white [text-shadow:0_3px_8px_rgba(0,0,0,0.6),0_6px_12px_rgba(0,0,0,0.4)]">Enclosed Home Gym</span>
             </h1>
             
             
@@ -42,7 +42,7 @@ const HeroSection = ({ handleFeatureClick }) => {
                 }
               }}
               size="lg" 
-              className="btn-primary text-white text-lg px-8 py-4 rounded-full"
+              className="btn-primary text-white text-lg px-8 py-4 rounded-full hover:!bg-[#1b998b]"
             >
               Shop UNIT ONE Pro
               <ArrowRight className="w-5 h-5 ml-2" />

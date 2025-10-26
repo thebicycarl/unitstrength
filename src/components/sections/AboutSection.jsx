@@ -24,7 +24,7 @@ const AboutSection = ({ handleFeatureClick }) => {
                   el.scrollIntoView({ behavior: 'smooth' });
                 }
               }} 
-              className="btn-primary text-white mb-8"
+              className="btn-primary text-white mb-8 hover:!bg-[#1b998b]"
             >
               Shop UNIT ONE Pro
               <ArrowRight className="w-5 h-5 ml-2" />
