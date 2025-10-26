@@ -18,7 +18,7 @@ const AboutSection = ({ handleFeatureClick }) => {
           <div>
             <h2 className="text-4xl font-bold mb-6 text-brand-primary">About us</h2>
             <p className="text-lg text-brand-tertiary mb-6">
-              UNIT Strength was founded out of passion for fitness and innovation. We are proud to design and craft the UNIT One Pro right here in Toowoomba, Queensland. Our precision engineering and local craftsmanship ensures that every UNIT One Pro meets the highest standards of quality and durability, while supporting your workouts and our stylish as your home.
+              UNIT Strength was founded out of passion for fitness and innovation. We are proud to design and craft the UNIT One Pro right here in Toowoomba, Queensland. Our precision engineering and local craftsmanship ensures that every UNIT One Pro meets the highest standards of quality and durability, while supporting your workouts and as stylish as your home.
             </p>
             
             <Button 

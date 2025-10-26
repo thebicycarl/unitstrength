@@ -195,7 +195,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                     <div className="mb-3 md:mb-3">
                       {pkg.oldPrice && <span className="text-base md:text-lg text-gray-400 line-through mr-2">${pkg.oldPrice.toLocaleString()}</span>}
                       <span className="text-xl md:text-2xl font-bold">${pkg.price.toLocaleString()}</span>
-                      <p className="text-xs mt-1 text-gray-300">New product offer: $1000 off, free installation</p>
+                      <p className="text-xs mt-1 text-gray-300">New product offer: $1000 off plus free installation</p>
                     </div>
                   </div>
                 </div>
