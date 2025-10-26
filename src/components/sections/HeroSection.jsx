@@ -24,7 +24,7 @@ const HeroSection = ({ handleFeatureClick }) => {
   }, []);
 
   return (
-    <section className="pt-16 min-h-[60vh] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
+    <section className="pt-16 min-h-[446px] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
       {/* Video placeholder/loading state */}
       {!isVideoLoaded && (
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#969694] to-[#959288]" />
@@ -77,7 +77,7 @@ const HeroSection = ({ handleFeatureClick }) => {
         </div>
       </div>
       
-      <div className="absolute bottom-6 left-0 right-0 z-10 flex justify-center">
+      <div className="absolute bottom-6 left-0 right-0 z-10 hidden md:flex justify-center">
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
