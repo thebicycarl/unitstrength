@@ -11,7 +11,7 @@ const HeroSection = ({ handleFeatureClick }) => {
         loop 
         muted 
         playsInline 
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-6 md:translate-x-10 -translate-y-[15px] md:translate-y-0"
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0"
         poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?fit=crop&w=1950&q=80"
       >
         <source src="/Cut clip v2.mp4" type="video/mp4" />

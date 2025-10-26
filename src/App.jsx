@@ -22,10 +22,24 @@ function App() {
   };
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Wait a moment to ensure DOM is ready (especially important for mobile menu transitions)
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      
+      if (element) {
+        const navbar = document.querySelector('nav');
+        const navbarHeight = navbar ? navbar.offsetHeight : 64;
+        
+        // Get the absolute position of the element
+        const elementTop = element.offsetTop;
+        const scrollPosition = elementTop - navbarHeight - 20;
+        
+        window.scrollTo({
+          top: Math.max(0, scrollPosition),
+          behavior: 'smooth'
+        });
+      }
+    }, 50);
   };
 
   return (

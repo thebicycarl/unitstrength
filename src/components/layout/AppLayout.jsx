@@ -4,30 +4,39 @@ import { Menu, ShoppingCart, X } from 'lucide-react';
 
 export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleMobileNavClick = (sectionId) => {
-    scrollToSection(sectionId);
+  const handleMobileNavClick = (sectionId, e) => {
+    if (e) {
+      e.preventDefault();
+    }
     setIsMobileMenuOpen(false);
+    // Small additional delay to ensure menu closes before scrollToSection delay
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 50);
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
+                onMouseEnter={() => setIsLogoHovered(true)}
+                onMouseLeave={() => setIsLogoHovered(false)}
+                className="flex items-center space-x-2 transition-opacity cursor-pointer h-full max-h-full"
               >
                 <img 
-                  src="/UNIT-Strength-logo.png" 
+                  src={isLogoHovered ? "/UNIT Strength logo teal.png" : "/UNIT Strength logo 2.png"}
                   alt="UNIT" 
-                  className="h-52 w-auto"
+                  className="h-8 w-auto md:h-12"
                 />
 
               </button>
@@ -72,26 +81,26 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
         <div className="md:hidden fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40">
           <div className="px-4 py-6 space-y-4">
             <button 
-              onClick={() => handleMobileNavClick('features')}
+              onClick={(e) => handleMobileNavClick('features', e)}
               className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               Features
             </button>
             <button 
-              onClick={() => handleMobileNavClick('pricing')}
+              onClick={(e) => handleMobileNavClick('pricing', e)}
               className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               Pricing
             </button>
             <button 
-              onClick={() => handleMobileNavClick('about')}
+              onClick={(e) => handleMobileNavClick('about', e)}
               className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
               About
             </button>
             <div className="pt-4 border-t border-gray-200">
               <Button 
-                onClick={() => handleMobileNavClick('pricing')} 
+                onClick={(e) => handleMobileNavClick('pricing', e)} 
                 className="w-full btn-primary text-white hover:!bg-[#1b998b]"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
