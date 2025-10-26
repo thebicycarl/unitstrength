@@ -7,8 +7,12 @@ const AboutSection = ({ handleFeatureClick }) => {
     <section id="about" className="py-20 bg-brand-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <img  className="w-full rounded-2xl shadow-xl" alt="Unit Strength company and manufacturing" src="/Australian made.png" />
+          <div className="p-8 bg-white rounded-2xl shadow-xl">
+            <img 
+              className="w-full" 
+              alt="Unit Strength company and manufacturing" 
+              src="/logo-unit.png"
+            />
           </div>
           
           <div>
