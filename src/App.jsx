@@ -7,8 +7,10 @@ import HeroSection from '@/components/sections/HeroSection';
 import OfferBanner from '@/components/sections/OfferBanner';
 import ProductOverview from '@/components/sections/ProductOverview';
 import FeaturesSection from '@/components/sections/FeaturesSection';
-import PricingSection from '@/components/sections/PricingSection';
-import CheckoutSection from '@/components/sections/CheckoutSection';
+// TEMP: Hidden for EOI phase - can be restored later
+// import PricingSection from '@/components/sections/PricingSection';
+// import CheckoutSection from '@/components/sections/CheckoutSection';
+import ExpressionOfInterestSection from '@/components/sections/ExpressionOfInterestSection';
 import AboutSection from '@/components/sections/AboutSection';
 import Footer from '@/components/layout/Footer';
 
@@ -53,8 +55,10 @@ function App() {
         <HeroSection handleFeatureClick={handleFeatureClick} />
         <OfferBanner />
         <ProductOverview />
-        <PricingSection handleFeatureClick={handleFeatureClick} setSelectedPackage={setSelectedPackage} />
-        <CheckoutSection handleFeatureClick={handleFeatureClick} selectedPackage={selectedPackage} />
+        {/* TEMP: Hidden for EOI phase - can be restored later */}
+        {/* <PricingSection handleFeatureClick={handleFeatureClick} setSelectedPackage={setSelectedPackage} /> */}
+        {/* <CheckoutSection handleFeatureClick={handleFeatureClick} selectedPackage={selectedPackage} /> */}
+        <ExpressionOfInterestSection />
         <FeaturesSection />
         <AboutSection handleFeatureClick={handleFeatureClick} />
         <Footer />

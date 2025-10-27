@@ -23,14 +23,14 @@ const AboutSection = ({ handleFeatureClick }) => {
             
             <Button 
               onClick={() => {
-                const el = document.getElementById('pricing');
+                const el = document.getElementById('expression-of-interest');
                 if (el) {
                   el.scrollIntoView({ behavior: 'smooth' });
                 }
               }} 
               className="btn-primary text-white mb-8 hover:!bg-[#1b998b]"
             >
-              Shop UNIT ONE Pro
+              Express Your Interest
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             

@@ -63,10 +63,10 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
                 Features
               </button>
               <button 
-                onClick={() => scrollToSection('pricing')}
+                onClick={() => scrollToSection('expression-of-interest')}
                 className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
               >
-                Pricing
+                Expression of Interest
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
@@ -74,7 +74,7 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
               >
                 About
               </button>
-              <Button onClick={() => scrollToSection('pricing')} className="btn-primary text-white hover:!bg-[#1b998b]">
+              <Button onClick={() => scrollToSection('expression-of-interest')} className="btn-primary text-white hover:!bg-[#1b998b]">
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Shop UNIT ONE Pro
               </Button>
@@ -100,10 +100,10 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
               Features
             </button>
             <button 
-              onClick={(e) => handleMobileNavClick('pricing', e)}
+              onClick={(e) => handleMobileNavClick('expression-of-interest', e)}
               className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
             >
-              Pricing
+              Expression of Interest
             </button>
             <button 
               onClick={(e) => handleMobileNavClick('about', e)}
@@ -113,7 +113,7 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
             </button>
             <div className="pt-4 border-t border-gray-200">
               <Button 
-                onClick={(e) => handleMobileNavClick('pricing', e)} 
+                onClick={(e) => handleMobileNavClick('expression-of-interest', e)} 
                 className="w-full btn-primary text-white hover:!bg-[#1b998b]"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
