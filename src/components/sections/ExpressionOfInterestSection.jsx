@@ -87,6 +87,10 @@ const ExpressionOfInterestSection = () => {
         timestamp: submissionData.timestamp
       };
 
+      // Debug: log what we're sending
+      console.log('Submitting to Sheet.best:', rowData);
+      console.log('Form data state:', submissionData);
+
       const response = await fetch(sheetEndpoint, {
         method: 'POST',
         headers: {
