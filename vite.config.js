@@ -10,7 +10,7 @@ if (isDev) {
 	editModeDevPlugin = (await import('./plugins/visual-editor/vite-plugin-edit-mode.js')).default;
 }
 
-const configHorizonsViteErrorHandler = `
+const configUnitStrengthViteErrorHandler = `
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
 		for (const addedNode of mutation.addedNodes) {
@@ -50,14 +50,14 @@ function handleViteOverlay(node) {
 		const error = messageText + (fileText ? ' File:' + fileText : '');
 
 		window.parent.postMessage({
-			type: 'horizons-vite-error',
+            type: 'unitstrength-vite-error',
 			error,
 		}, '*');
 	}
 }
 `;
 
-const configHorizonsRuntimeErrorHandler = `
+const configUnitStrengthRuntimeErrorHandler = `
 window.onerror = (message, source, lineno, colno, errorObj) => {
 	const errorDetails = errorObj ? JSON.stringify({
 		name: errorObj.name,
@@ -69,14 +69,14 @@ window.onerror = (message, source, lineno, colno, errorObj) => {
 	}) : null;
 
 	window.parent.postMessage({
-		type: 'horizons-runtime-error',
+    type: 'unitstrength-runtime-error',
 		message,
 		error: errorDetails
 	}, '*');
 };
 `;
 
-const configHorizonsConsoleErrroHandler = `
+const configUnitStrengthConsoleErrroHandler = `
 const originalConsoleError = console.error;
 console.error = function(...args) {
 	originalConsoleError.apply(console, args);
@@ -96,7 +96,7 @@ console.error = function(...args) {
 	}
 
 	window.parent.postMessage({
-		type: 'horizons-console-error',
+    type: 'unitstrength-console-error',
 		error: errorString
 	}, '*');
 };
@@ -150,19 +150,19 @@ const addTransformIndexHtml = {
 				{
 					tag: 'script',
 					attrs: { type: 'module' },
-					children: configHorizonsRuntimeErrorHandler,
+                    children: configUnitStrengthRuntimeErrorHandler,
 					injectTo: 'head',
 				},
 				{
 					tag: 'script',
 					attrs: { type: 'module' },
-					children: configHorizonsViteErrorHandler,
+                    children: configUnitStrengthViteErrorHandler,
 					injectTo: 'head',
 				},
 				{
 					tag: 'script',
 					attrs: {type: 'module'},
-					children: configHorizonsConsoleErrroHandler,
+                    children: configUnitStrengthConsoleErrroHandler,
 					injectTo: 'head',
 				},
 				{
