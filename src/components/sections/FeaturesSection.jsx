@@ -24,9 +24,6 @@ const FeatureCard = ({ imageSrc, alt, title, subtitle, index }) => (
       <h3 className="text-sm sm:text-lg font-semibold mb-2 text-brand-primary whitespace-pre-line">{title}</h3>
     )}
     {subtitle && <p className="text-xs sm:text-sm italic text-brand-tertiary">{subtitle}</p>}
-    {alt === 'Coaching session offer' && (
-      <p className="text-xs italic text-brand-tertiary mt-1">Conditions apply</p>
-    )}
   </motion.div>
 );
 
@@ -38,7 +35,7 @@ const FeaturesSection = () => {
     { title: "Dimensions", alt: "UNIT ONE Pro dimensions", imageSrc: "/closed.jpeg" },
     { title: "Made with 3mm commercial grade steel, the UNIT ONE Pro is built to last", alt: "Commercial grade steel construction", imageSrc: "/Commercial grade steel.jpg" },
     { title: "Mount to your wall (recommended) or leave free-standing with removable supports", alt: "Mount to wall or free-standing", imageSrc: "/removable supports.jpg" },
-    { title: "Buy a UNIT and receive a complementary 30min coaching session", alt: "Coaching session offer", imageSrc: "/coaching session.jpg" },
+    { title: "New to strength training? Buy a UNIT and receive a complementary 30min coaching session", alt: "Coaching session offer", imageSrc: "/coaching session.jpg" },
     { title: "Locally designed and built in Toowoomba, Queensland", alt: "Locally designed and built in Toowoomba", imageSrc: "/Australian made.png", subtitle: "Some components globally sourced" },
   ];
 
