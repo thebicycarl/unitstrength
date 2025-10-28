@@ -39,7 +39,7 @@ const AboutSection = ({ handleFeatureClick }) => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-brand-accent2" />
-                  <span className="text-brand-tertiary">Questions? Call or text Carl on +61 432 923 571 (Whatsapp preferred)</span>
+                <span className="text-brand-tertiary">Questions? Call or text Carl on 0492 923 571</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-brand-accent2" />

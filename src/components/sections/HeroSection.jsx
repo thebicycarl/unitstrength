@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
-const HeroSection = ({ handleFeatureClick }) => {
+const HeroSection = ({ handleFeatureClick, scrollToSection }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef(null);
 
@@ -53,7 +53,7 @@ const HeroSection = ({ handleFeatureClick }) => {
             className="mb-8"
           >
             <h1 className="text-5xl md:text-7xl font-black mb-6 -mt-19.8 -translate-x-1">
-              <span className="gradient-text [text-shadow:0_3px_8px_rgba(255,255,255,0.5)]">The Ultimate</span>
+              <span className="gradient-text">The Ultimate</span>
               <br />
               <span className="text-white [text-shadow:0_3px_8px_rgba(0,0,0,0.6),0_6px_12px_rgba(0,0,0,0.4)]">Enclosed Home Gym</span>
             </h1>
@@ -61,16 +61,43 @@ const HeroSection = ({ handleFeatureClick }) => {
             
             
             <Button 
-              onClick={() => {
-                const el = document.getElementById('pricing');
-                if (el) {
-                  el.scrollIntoView({ behavior: 'smooth' });
+              onClick={(e) => {
+                if (typeof scrollToSection === 'function') {
+                  scrollToSection('product-overview');
+                } else {
+                  const el = document.getElementById('product-overview');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+                // On mobile, remove focus to restore original button color
+                if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') {
+                  e.currentTarget.blur();
                 }
               }}
+              onPointerUp={(e) => {
+                if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') {
+                  e.currentTarget.blur();
+                }
+                if (document && document.activeElement instanceof HTMLElement) {
+                  document.activeElement.blur();
+                }
+              }}
+              onTouchEnd={(e) => {
+                if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') {
+                  e.currentTarget.blur();
+                }
+                // Ensure blur after React event cycle
+                setTimeout(() => {
+                  if (document && document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur();
+                  }
+                }, 0);
+              }}
               size="lg" 
-              className="btn-primary text-white text-lg px-8 py-4 rounded-full hover:!bg-[#1b998b]"
+              className="btn-primary no-press-mobile text-white text-lg px-8 py-4 rounded-full transition-none md:transition-all md:hover:!bg-[#1b998b] active:!bg-[#001f47] focus:!bg-[#001f47] focus-visible:!ring-0 focus:!ring-0 focus:!ring-offset-0"
             >
-              Shop UNIT ONE Pro
+              UNIT ONE Pro
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </motion.div>

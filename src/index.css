@@ -68,12 +68,50 @@ body {
 .btn-primary {
   background: #001f47;
   transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary:hover {
   background: #001f47;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 31, 71, 0.3);
+}
+
+/* On touch devices, avoid color/style changes on press */
+@media (hover: none) {
+  .btn-primary {
+    transition: none !important;
+  }
+  /* Utility to completely disable press-state visuals on mobile */
+  .no-press-mobile,
+  .no-press-mobile:hover,
+  .no-press-mobile:active,
+  .no-press-mobile:focus,
+  .no-press-mobile:focus-visible {
+    -webkit-tap-highlight-color: transparent !important;
+    background: #001f47 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    filter: none !important;
+  }
+  .btn-primary:hover {
+    background: #001f47;
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-primary:active,
+  .btn-primary:focus,
+  .btn-primary:focus-visible {
+    background: #001f47 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
 }
 
 .section-divider {

@@ -218,7 +218,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-brand-accent2" />
-                <span className="text-base text-brand-tertiary">+61 432 923 571 (Whatsapp preferred)</span>
+                <span className="text-base text-brand-tertiary">0492 923 571</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-brand-accent2" />
@@ -342,7 +342,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                   <div className="space-y-4 mb-6">
                     <div className="flex flex-col items-center space-y-2">
                       <Phone className="w-5 h-5 text-brand-accent2" />
-                      <span className="text-sm text-white">+61 432 923 571 (Whatsapp preferred)</span>
+                      <span className="text-sm text-white">0492 923 571</span>
                     </div>
                     <div className="flex flex-col items-center space-y-2">
                       <Mail className="w-5 h-5 text-brand-accent2" />

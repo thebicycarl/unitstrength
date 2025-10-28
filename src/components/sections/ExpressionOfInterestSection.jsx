@@ -87,10 +87,6 @@ const ExpressionOfInterestSection = () => {
         timestamp: submissionData.timestamp
       };
 
-      // Debug: log what we're sending
-      console.log('Submitting to Sheet.best:', rowData);
-      console.log('Form data state:', submissionData);
-
       const response = await fetch(sheetEndpoint, {
         method: 'POST',
         headers: {
@@ -104,6 +100,14 @@ const ExpressionOfInterestSection = () => {
       }
 
       setIsSuccess(true);
+      // Preserve current scroll position to keep confirmation in view
+      // by cancelling any potential browser auto-scroll
+      if (typeof window !== 'undefined') {
+        const currentY = window.scrollY;
+        setTimeout(() => {
+          window.scrollTo({ top: currentY, behavior: 'auto' });
+        }, 0);
+      }
       
       toast({
         title: "Thanks! We'll be in touch within 24 hours 🎉",
@@ -147,7 +151,7 @@ const ExpressionOfInterestSection = () => {
             </p>
             <div className="border-t pt-6 mt-6">
               <p className="text-sm text-brand-tertiary mb-2">Questions? Contact us:</p>
-              <p className="text-brand-tertiary">+61 432 923 571 (Whatsapp preferred)</p>
+              <p className="text-brand-tertiary">0492 923 571</p>
               <p className="text-brand-tertiary">carl@unitstrength.com.au</p>
             </div>
             <Button 
@@ -204,7 +208,7 @@ const ExpressionOfInterestSection = () => {
               </div>
               
               <div>
-                <Label htmlFor="email">Email Address *</Label>
+                <Label htmlFor="email">Email addy *</Label>
                 <Input 
                   id="email" 
                   type="email" 
@@ -216,7 +220,7 @@ const ExpressionOfInterestSection = () => {
               </div>
               
               <div>
-                <Label htmlFor="phone">Phone Number *</Label>
+                <Label htmlFor="phone">Phone number *</Label>
                 <Input 
                   id="phone" 
                   type="tel" 
@@ -240,11 +244,11 @@ const ExpressionOfInterestSection = () => {
               </div>
               
               <div>
-                <Label htmlFor="heardAboutUs">How did you hear about this product?</Label>
+                <Label htmlFor="heardAboutUs">How did you hear about us?</Label>
                 <Input 
                   id="heardAboutUs" 
                   type="text" 
-                  placeholder="Friend, social media, Google, etc." 
+                  placeholder="Friend, social media, wise sage, etc." 
                   value={formData.heardAboutUs} 
                   onChange={handleChange}
                 />
@@ -255,7 +259,7 @@ const ExpressionOfInterestSection = () => {
                 <textarea
                   id="comments"
                   className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="Tell us more about what you're looking for..."
+                  placeholder="Anything at all"
                   value={formData.comments}
                   onChange={handleChange}
                   rows="4"

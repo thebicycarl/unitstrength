@@ -13,6 +13,9 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
   const handleMobileNavClick = (sectionId, e) => {
     if (e) {
       e.preventDefault();
+      if (e.currentTarget && typeof e.currentTarget.blur === 'function') {
+        e.currentTarget.blur();
+      }
     }
     setIsMobileMenuOpen(false);
     // Small additional delay to ensure menu closes before scrollToSection delay
@@ -62,21 +65,16 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
               >
                 Features
               </button>
-              <button 
-                onClick={() => scrollToSection('expression-of-interest')}
-                className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
-              >
-                Expression of Interest
-              </button>
+              
               <button 
                 onClick={() => scrollToSection('about')}
                 className="text-brand-tertiary hover:!text-[#1b998b] transition-colors"
               >
                 About
               </button>
-              <Button onClick={() => scrollToSection('expression-of-interest')} className="btn-primary text-white hover:!bg-[#1b998b]">
+              <Button onClick={(e) => { scrollToSection('expression-of-interest'); if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') { e.currentTarget.blur(); } }} onPointerUp={(e)=>{ if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') { e.currentTarget.blur(); } }} onTouchEnd={(e)=>{ if (e && e.currentTarget && typeof e.currentTarget.blur === 'function') { e.currentTarget.blur(); } setTimeout(()=>{ if (document && document.activeElement instanceof HTMLElement) { document.activeElement.blur(); } },0); }} className="btn-primary no-press-mobile text-white transition-none md:transition-all md:hover:!bg-[#1b998b] active:!bg-[#001f47] focus:!bg-[#001f47] focus-visible:!ring-0 focus:!ring-0 focus:!ring-offset-0">
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                Shop UNIT ONE Pro
+                Express Interest
               </Button>
             </div>
             
@@ -99,12 +97,7 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
             >
               Features
             </button>
-            <button 
-              onClick={(e) => handleMobileNavClick('expression-of-interest', e)}
-              className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
-            >
-              Expression of Interest
-            </button>
+            
             <button 
               onClick={(e) => handleMobileNavClick('about', e)}
               className="block w-full text-left text-lg font-medium text-brand-tertiary hover:!text-[#1b998b] transition-colors py-2"
@@ -117,7 +110,7 @@ export function AppLayout({ children, scrollToSection, handleFeatureClick }) {
                 className="w-full btn-primary text-white hover:!bg-[#1b998b]"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                Shop UNIT ONE Pro
+                Express Interest
               </Button>
             </div>
           </div>
