@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { CheckCircle, Loader2 } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
-import { sendExpressionOfInterestEmail } from '@/lib/notifications';
 
 /**
  * ExpressionOfInterestSection Component
@@ -67,18 +66,11 @@ const ExpressionOfInterestSection = () => {
       if (!sheetEndpoint) {
         console.warn('VITE_SHEET_BEST_URL not configured. Form data:', submissionData);
         
-        // Development mode - just show success and attempt email if configured
+        // Development mode - just show success
         toast({
           title: "Development Mode",
           description: "Form submission logged to console. Configure VITE_SHEET_BEST_URL in .env to enable real submissions.",
         });
-        try {
-          await sendExpressionOfInterestEmail({
-            toEmail: 'carl@unitstrength.com.au',
-            subject: 'New Expression of Interest Submission (Dev Mode)',
-            formData: submissionData,
-          });
-        } catch (e) {}
         setIsSuccess(true);
         return;
       }
@@ -106,15 +98,6 @@ const ExpressionOfInterestSection = () => {
       if (!response.ok) {
         throw new Error('Failed to submit form');
       }
-
-      // Try sending notification email (non-blocking)
-      try {
-        await sendExpressionOfInterestEmail({
-          toEmail: 'carl@unitstrength.com.au',
-          subject: 'New Expression of Interest Submission',
-          formData: submissionData,
-        });
-      } catch (e) {}
 
       setIsSuccess(true);
       // Preserve current scroll position to keep confirmation in view
