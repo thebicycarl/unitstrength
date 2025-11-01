@@ -71,6 +71,12 @@ const ExpressionOfInterestSection = () => {
           title: "Development Mode",
           description: "Form submission logged to console. Configure VITE_SHEET_BEST_URL in .env to enable real submissions.",
         });
+        
+        // Track Meta Pixel CompleteRegistration event
+        if (typeof window !== 'undefined' && window.fbq) {
+          window.fbq('track', 'CompleteRegistration');
+        }
+        
         setIsSuccess(true);
         return;
       }
@@ -97,6 +103,11 @@ const ExpressionOfInterestSection = () => {
 
       if (!response.ok) {
         throw new Error('Failed to submit form');
+      }
+
+      // Track Meta Pixel CompleteRegistration event
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'CompleteRegistration');
       }
 
       setIsSuccess(true);
