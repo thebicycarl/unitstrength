@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 
 const FeatureCard = ({ imageSrc, alt, title, subtitle, index }) => (
   <motion.div
-    whileHover={{ scale: 1.05 }}
-    className="feature-card p-3 sm:p-6 rounded-2xl card-hover"
+    className="feature-card p-3 sm:p-6 rounded-2xl"
   >
     <img  className={`w-full aspect-square object-cover rounded-lg mb-2 sm:mb-4 ${index === 3 ? 'md:object-[center_bottom] object-[center_top]' : ''}`} alt={alt} src={imageSrc} />
     {alt === 'UNIT ONE Pro dimensions' ? (
