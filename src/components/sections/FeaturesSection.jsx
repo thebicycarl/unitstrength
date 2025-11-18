@@ -28,7 +28,7 @@ const FeatureCard = ({ imageSrc, alt, title, subtitle, index }) => (
 
 const FeaturesSection = () => {
   const features = [
-    { title: "Standard 60mm x 60mm bar sizing takes wide variety of attachments", alt: "Standard 60mm x 60mm bar sizing", imageSrc: "/hinges.jpg" },
+    { title: "Standard 60mm x 60mm bar sizing takes wide variety of attachments", alt: "Standard 60mm x 60mm bar sizing", imageSrc: "/core package.jpg" },
     { title: "Store over 180kg of bumper plates on the internal weight horns", alt: "Weight storage capacity", imageSrc: "/Store bumper plates.jpg" },
     { title: "Adjust the pullup bar height to suit you and your ceilings", alt: "Adjustable pullup bar height", imageSrc: "/pullup bar.jpg" },
     { title: "Dimensions", alt: "UNIT ONE Pro dimensions", imageSrc: "/closed.jpeg" },
