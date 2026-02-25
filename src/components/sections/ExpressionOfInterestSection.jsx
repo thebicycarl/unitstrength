@@ -7,13 +7,10 @@ import { toast } from '@/components/ui/use-toast';
 
 /**
  * ExpressionOfInterestSection Component
- * 
- * Sheet.best Setup Instructions:
- * 1. Create a Google Sheet with columns: name, email, phone, suburb, heard about us, comments, timestamp
- * 2. Go to https://sheet.best and connect your Google Sheet
- * 3. Copy the API endpoint URL they provide
- * 4. Add to .env: VITE_SHEET_BEST_URL=your_endpoint_here
- * 5. Form will POST data directly to the sheet
+ *
+ * Form submissions are sent via FormSubmit.co → email to carl@unitstrength.com.au.
+ * No sign-up: first submission sends an activation email to that address; click the
+ * link once and the form is active. https://formsubmit.co
  */
 
 const ExpressionOfInterestSection = () => {
@@ -54,51 +51,28 @@ const ExpressionOfInterestSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Add timestamp
       const submissionData = {
         ...formData,
         timestamp: new Date().toISOString()
       };
 
-      // Get the Sheet.best endpoint from environment variable
-      const sheetEndpoint = import.meta.env.VITE_SHEET_BEST_URL;
-      
-      if (!sheetEndpoint) {
-        console.warn('VITE_SHEET_BEST_URL not configured. Form data:', submissionData);
-        
-        // Development mode - just show success
-        toast({
-          title: "Development Mode",
-          description: "Form submission logged to console. Configure VITE_SHEET_BEST_URL in .env to enable real submissions.",
-        });
-        
-        // Track Meta Pixel CompleteRegistration event
-        if (typeof window !== 'undefined' && window.fbq) {
-          window.fbq('track', 'CompleteRegistration');
-        }
-        
-        setIsSuccess(true);
-        return;
-      }
-
-      // POST to Sheet.best API
-      // Note: Sheet.best expects data as individual row fields
-      const rowData = {
+      const payload = {
+        _subject: 'Unit Strength – Expression of Interest',
+        _replyto: submissionData.email,
         name: submissionData.name,
         email: submissionData.email,
         phone: submissionData.phone,
         suburb: submissionData.suburb,
-        "heard about us": submissionData.heardAboutUs,
+        'How did you hear about us?': submissionData.heardAboutUs,
         comments: submissionData.comments,
-        timestamp: submissionData.timestamp
+        _timestamp: submissionData.timestamp
       };
 
-      const response = await fetch(sheetEndpoint, {
+      const body = new URLSearchParams(payload).toString();
+      const response = await fetch('https://formsubmit.co/ajax/carl@unitstrength.com.au', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(rowData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+        body,
       });
 
       if (!response.ok) {
