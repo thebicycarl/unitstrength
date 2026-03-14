@@ -57,9 +57,9 @@ const HeroSection = ({ handleFeatureClick, scrollToSection }) => {
               <br />
               <span className="text-white [text-shadow:0_3px_8px_rgba(0,0,0,0.6),0_6px_12px_rgba(0,0,0,0.4)]">Enclosed Home Gym</span>
             </h1>
-            
-            
-            
+            <p className="text-white/95 text-lg md:text-xl font-medium mb-8 [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
+              Train hard. • Stay organised. • Save space.
+            </p>
             <Button 
               onClick={(e) => {
                 if (typeof scrollToSection === 'function') {

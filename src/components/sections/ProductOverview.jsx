@@ -7,6 +7,7 @@ const ProductOverview = () => {
     { title: "Perfect for your spare room, garage or anywhere in the home", description: "Compact design fits seamlessly into any space" },
     { title: "Ready to workout in seconds", description: "Quick setup means more time for your fitness goals" },
     { title: "Built tough to handle your hardest workouts", description: "Premium construction for years of reliable performance" },
+    { title: "Bespoke options available", description: "Need a cable machine? different equipment configurations or cabinetry colours? Get in touch!" },
   ];
 
   return (
