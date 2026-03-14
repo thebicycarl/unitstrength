@@ -132,7 +132,7 @@ const ExpressionOfInterestSection = () => {
               We've received your expression of interest and will be in touch within 24 hours.
             </p>
             <p className="text-brand-tertiary mb-6">
-              Next batch of UNITs ready <strong>January 2026</strong>. We'll keep you updated on availability and the special offer.
+              Next batch of UNITs ready <strong>May 2026</strong>. We'll keep you updated on availability and the special offer.
             </p>
             <div className="border-t pt-6 mt-6">
               <p className="text-sm text-brand-tertiary mb-2">Questions? Contact us:</p>
@@ -172,7 +172,7 @@ const ExpressionOfInterestSection = () => {
             </div>
             
             <p className="text-lg text-brand-tertiary mb-6">
-              The next batch of UNITs will be ready <strong>January 2026</strong>. Interested in getting in before the new product offer runs out? Fill out the form below.
+              The next batch of UNITs will be ready <strong>May 2026</strong>. Interested in getting in before the new product offer runs out? Fill out the form below.
             </p>
           </div>
         </div>
