@@ -19,7 +19,6 @@ const ExpressionOfInterestSection = () => {
     email: '',
     phone: '',
     suburb: '',
-    heardAboutUs: '',
     comments: ''
   });
   
@@ -63,7 +62,6 @@ const ExpressionOfInterestSection = () => {
         email: submissionData.email,
         phone: submissionData.phone,
         suburb: submissionData.suburb,
-        'How did you hear about us?': submissionData.heardAboutUs,
         comments: submissionData.comments,
         _timestamp: submissionData.timestamp
       };
@@ -105,7 +103,6 @@ const ExpressionOfInterestSection = () => {
         email: '',
         phone: '',
         suburb: '',
-        heardAboutUs: '',
         comments: ''
       });
 
@@ -172,7 +169,7 @@ const ExpressionOfInterestSection = () => {
             </div>
             
             <p className="text-lg text-brand-tertiary mb-6">
-              The next batch of UNITs will be ready <strong>May 2026</strong>. Interested in getting in before the new product offer runs out? Fill out the form below.
+              The next batch of UNITs will be ready <strong>May 2026</strong>. Interested in getting in before the new product offer runs out, or just want to know more? Fill out the form below.
             </p>
           </div>
         </div>
@@ -225,17 +222,6 @@ const ExpressionOfInterestSection = () => {
                   value={formData.suburb} 
                   onChange={handleChange}
                   required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="heardAboutUs">How did you hear about us?</Label>
-                <Input 
-                  id="heardAboutUs" 
-                  type="text" 
-                  placeholder="Friend, social media, wise sage, etc." 
-                  value={formData.heardAboutUs} 
-                  onChange={handleChange}
                 />
               </div>
               
