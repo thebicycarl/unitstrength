@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/toaster';
 import { toast } from '@/components/ui/use-toast';
 import { AppLayout } from '@/components/layout/AppLayout';
@@ -77,6 +78,7 @@ function App() {
       </AppLayout>
       
       <Toaster />
+      <Analytics />
     </>
   );
 }

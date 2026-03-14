@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:luxury": "vite --config luxury-site/vite.config.js",
+    "build:luxury": "vite build --config luxury-site/vite.config.js",
+    "preview:luxury": "vite preview --config luxury-site/vite.config.js --outDir dist-luxury"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -21,6 +24,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@stripe/react-stripe-js": "^5.2.0",
     "@stripe/stripe-js": "^8.1.0",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
