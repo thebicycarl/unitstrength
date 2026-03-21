@@ -16,8 +16,11 @@ const ffmpeg = require('fluent-ffmpeg');
 // Set the ffmpeg path
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-const inputVideo = 'public/Cut clip v2.mp4';
-const outputVideo = 'public/Cut clip v2-optimized.mp4';
+// Usage: node optimize-video.cjs [input path]
+// Default: public/Cut clip v2.mp4
+const inputVideo = process.argv[2] || 'public/Cut clip v2.mp4';
+const parsed = path.parse(inputVideo);
+const outputVideo = path.join(parsed.dir, `${parsed.name}-optimized${parsed.ext}`);
 
 console.log('🎬 Video Optimization Script');
 console.log('=============================\n');

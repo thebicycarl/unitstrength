@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/toaster';
 import { toast } from '@/components/ui/use-toast';
 import { AppLayout } from '@/components/layout/AppLayout';
+import TopVideoHeroSection from '@/components/sections/TopVideoHeroSection';
 import HeroSection from '@/components/sections/HeroSection';
 import OfferBanner from '@/components/sections/OfferBanner';
 import ProductOverview from '@/components/sections/ProductOverview';
@@ -52,6 +53,7 @@ function App() {
       </Helmet>
       
       <AppLayout scrollToSection={scrollToSection} handleFeatureClick={handleFeatureClick}>
+        <TopVideoHeroSection />
         <HeroSection handleFeatureClick={handleFeatureClick} scrollToSection={scrollToSection} />
         <OfferBanner />
         <ProductOverview />

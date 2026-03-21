@@ -24,7 +24,7 @@ const HeroSection = ({ handleFeatureClick, scrollToSection }) => {
   }, []);
 
   return (
-    <section className="pt-16 min-h-[446px] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
+    <section id="main-hero" className="pt-16 min-h-[446px] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
       {/* Video placeholder/loading state */}
       {!isVideoLoaded && (
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#969694] to-[#959288]" />
