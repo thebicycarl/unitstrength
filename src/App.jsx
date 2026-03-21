@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/toaster';
@@ -7,14 +7,11 @@ import { AppLayout } from '@/components/layout/AppLayout';
 import TopVideoHeroSection from '@/components/sections/TopVideoHeroSection';
 import HeroSection from '@/components/sections/HeroSection';
 import OfferBanner from '@/components/sections/OfferBanner';
-import ProductOverview from '@/components/sections/ProductOverview';
-import FeaturesSection from '@/components/sections/FeaturesSection';
 // TEMP: Hidden for EOI phase - can be restored later
 // import PricingSection from '@/components/sections/PricingSection';
 // import CheckoutSection from '@/components/sections/CheckoutSection';
-import ExpressionOfInterestSection from '@/components/sections/ExpressionOfInterestSection';
-import AboutSection from '@/components/sections/AboutSection';
-import Footer from '@/components/layout/Footer';
+
+const BelowTheFold = lazy(() => import('@/components/sections/BelowTheFold'));
 
 function App() {
   const [selectedPackage, setSelectedPackage] = useState(null);
@@ -56,27 +53,16 @@ function App() {
         <TopVideoHeroSection />
         <HeroSection handleFeatureClick={handleFeatureClick} scrollToSection={scrollToSection} />
         <OfferBanner />
-        <ProductOverview />
-        {/* TEMP: Hidden for EOI phase - can be restored later */}
-        {/* <PricingSection handleFeatureClick={handleFeatureClick} setSelectedPackage={setSelectedPackage} /> */}
-        {/* <CheckoutSection handleFeatureClick={handleFeatureClick} selectedPackage={selectedPackage} /> */}
-        <ExpressionOfInterestSection />
-        <FeaturesSection />
-        {/* CTA below Features: mirrors About section's Express Interest button */}
-        <section className="py-10 bg-brand-secondary">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <button
-                onClick={() => scrollToSection('expression-of-interest')}
-                className="btn-primary text-white px-6 py-3 rounded-md hover:!bg-[#1b998b]"
-              >
-                Express Your Interest
-              </button>
-            </div>
-          </div>
-        </section>
-        <AboutSection handleFeatureClick={handleFeatureClick} />
-        <Footer />
+        <Suspense
+          fallback={
+            <div
+              className="min-h-[48vh] bg-brand-secondary/40"
+              aria-hidden
+            />
+          }
+        >
+          <BelowTheFold handleFeatureClick={handleFeatureClick} scrollToSection={scrollToSection} />
+        </Suspense>
       </AppLayout>
       
       <Toaster />

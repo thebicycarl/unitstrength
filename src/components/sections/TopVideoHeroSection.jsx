@@ -162,7 +162,8 @@ const TopVideoHeroSection = () => {
           ref={videoRef}
           muted={muted}
           playsInline
-          preload="auto"
+          preload="metadata"
+          poster="/Thumbnail.jpg"
           className="absolute inset-0 z-0 h-full w-full cursor-pointer object-contain object-center"
           style={{
             opacity: isVideoReady ? 1 : 0,
