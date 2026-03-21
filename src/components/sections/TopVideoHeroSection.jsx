@@ -16,6 +16,9 @@ const TopVideoHeroSection = () => {
   const [progress, setProgress] = useState(0);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const videoRef = useRef(null);
+  /** After seek-to-end preview; scroll hint only counts real playback */
+  const hasPlaybackStartedRef = useRef(false);
+  const previewSeekDoneRef = useRef(false);
 
   const pauseVideo = useCallback(() => {
     const video = videoRef.current;
@@ -26,6 +29,8 @@ const TopVideoHeroSection = () => {
   const startPlayback = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.currentTime = 0;
+    setProgress(0);
     video.muted = false;
     setMuted(false);
     setHasEnded(false);
@@ -61,7 +66,21 @@ const TopVideoHeroSection = () => {
 
     const markReady = () => setIsVideoReady(true);
 
+    /** Show last frame before play (paused); no effect on scroll hint until user plays */
+    const trySeekToPreviewEnd = () => {
+      if (previewSeekDoneRef.current) return;
+      const d = video.duration;
+      if (!d || !Number.isFinite(d) || d <= 0) return;
+      const onSeeked = () => {
+        previewSeekDoneRef.current = true;
+        setProgress((video.currentTime / d) * 100);
+      };
+      video.addEventListener('seeked', onSeeked, { once: true });
+      video.currentTime = Math.max(0, d - 0.06);
+    };
+
     const onPlay = () => {
+      hasPlaybackStartedRef.current = true;
       setIsPlaying(true);
       setHasEnded(false);
     };
@@ -71,6 +90,7 @@ const TopVideoHeroSection = () => {
       const d = video.duration;
       if (d && Number.isFinite(d) && d > 0) {
         setProgress((video.currentTime / d) * 100);
+        if (!hasPlaybackStartedRef.current) return;
         const threshold = Math.min(SCROLL_THRESHOLD_SEC, d);
         if (video.currentTime >= threshold - 0.05) {
           setShowScrollHint(true);
@@ -84,9 +104,19 @@ const TopVideoHeroSection = () => {
       setProgress(100);
     };
 
-    video.addEventListener('loadedmetadata', markReady);
+    const onLoadedMetadata = () => {
+      markReady();
+      trySeekToPreviewEnd();
+    };
+
+    const onCanPlay = () => {
+      markReady();
+      trySeekToPreviewEnd();
+    };
+
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('loadeddata', markReady);
-    video.addEventListener('canplay', markReady);
+    video.addEventListener('canplay', onCanPlay);
     video.addEventListener('play', onPlay);
     video.addEventListener('pause', onPause);
     video.addEventListener('timeupdate', onTimeUpdate);
@@ -94,12 +124,13 @@ const TopVideoHeroSection = () => {
 
     if (video.readyState >= 1) {
       markReady();
+      trySeekToPreviewEnd();
     }
 
     return () => {
-      video.removeEventListener('loadedmetadata', markReady);
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('loadeddata', markReady);
-      video.removeEventListener('canplay', markReady);
+      video.removeEventListener('canplay', onCanPlay);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
       video.removeEventListener('timeupdate', onTimeUpdate);
