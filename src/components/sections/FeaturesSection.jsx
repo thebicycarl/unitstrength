@@ -5,7 +5,13 @@ const FeatureCard = ({ imageSrc, alt, title, subtitle, index }) => (
   <motion.div
     className="feature-card p-3 sm:p-6 rounded-2xl"
   >
-    <img  className={`w-full aspect-square object-cover rounded-lg mb-2 sm:mb-4 ${index === 3 ? 'md:object-[center_bottom] object-[center_top]' : ''}`} alt={alt} src={imageSrc} />
+    <img
+      className={`w-full aspect-square object-cover rounded-lg mb-2 sm:mb-4 ${index === 3 ? 'md:object-[center_bottom] object-[center_top]' : ''}`}
+      alt={alt}
+      src={imageSrc}
+      loading="lazy"
+      decoding="async"
+    />
     {alt === 'UNIT ONE Pro dimensions' ? (
       <h3 className="text-sm sm:text-lg font-semibold mb-2 text-brand-primary">
         <div className="grid grid-cols-[auto,auto] gap-x-0.4">

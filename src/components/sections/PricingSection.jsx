@@ -17,7 +17,13 @@ const PricingCard = ({ title, description, imageSrc, alt, features, price, oldPr
     <h3 className="text-2xl font-bold mb-4">{title}</h3>
     <p className={popular ? "text-gray-300 mb-6" : "text-gray-600 mb-6"}>{description}</p>
     
-    <img  className="w-full h-48 object-cover rounded-lg mb-6" alt={alt} src="/60 by 60.jpg" />
+    <img
+      className="w-full h-48 object-cover rounded-lg mb-6"
+      alt={alt}
+      src="/60 by 60.jpg"
+      loading="lazy"
+      decoding="async"
+    />
     
     <div className={`mb-6 text-sm space-y-1 ${!popular && 'text-gray-600'}`}>{features.map((feature, index) => <p key={index}>{feature}</p>)}</div>
     
@@ -183,7 +189,13 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                     </div>
                     
                     <div className="flex-1 flex items-center justify-center mb-3 md:mb-3">
-                      <img className={`w-full h-28 md:h-28 object-cover rounded-lg ${index === 1 ? 'object-top' : ''}`} alt={pkg.alt} src={pkg.imageSrc || "https://images.unsplash.com/photo-1599472696777-95cab5e0f891"} />
+                      <img
+                        className={`w-full h-28 md:h-28 object-cover rounded-lg ${index === 1 ? 'object-top' : ''}`}
+                        alt={pkg.alt}
+                        src={pkg.imageSrc || 'https://images.unsplash.com/photo-1599472696777-95cab5e0f891'}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                   </div>
                   
@@ -298,7 +310,13 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                       </div>
                       
                       <div className="flex-1 flex items-center justify-center mb-4">
-                        <img className={`w-full h-32 object-cover rounded-lg ${index === 1 ? 'object-top' : ''}`} alt={pkg.alt} src={pkg.imageSrc || "https://images.unsplash.com/photo-1599472696777-95cab5e0f891"} />
+                        <img
+                          className={`w-full h-32 object-cover rounded-lg ${index === 1 ? 'object-top' : ''}`}
+                          alt={pkg.alt}
+                          src={pkg.imageSrc || 'https://images.unsplash.com/photo-1599472696777-95cab5e0f891'}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                     </div>
                     

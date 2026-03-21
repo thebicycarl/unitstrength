@@ -195,6 +195,7 @@ const TopVideoHeroSection = () => {
           ref={videoRef}
           muted={muted}
           playsInline
+          fetchPriority="high"
           preload="auto"
           className="absolute inset-0 z-0 h-full w-full cursor-pointer object-contain object-center"
           style={{

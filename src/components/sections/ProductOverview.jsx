@@ -20,10 +20,13 @@ const ProductOverview = () => {
         
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
-            <img  
+            <img
               className="w-full rounded-2xl shadow-xl"
               alt="UNIT ONE Pro detailed view"
-             src="/hinges.jpg" />
+              src="/hinges.jpg"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           
           <div className="space-y-4 md:space-y-5">

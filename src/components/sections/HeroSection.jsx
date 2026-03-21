@@ -36,7 +36,7 @@ const HeroSection = ({ handleFeatureClick, scrollToSection }) => {
         loop 
         muted 
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0 transition-opacity duration-500"
         style={{ opacity: isVideoLoaded ? 1 : 0 }}
       >
