@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "dev:luxury": "vite --config luxury-site/vite.config.js",
-    "build:luxury": "vite build --config luxury-site/vite.config.js",
-    "preview:luxury": "vite preview --config luxury-site/vite.config.js --outDir dist-luxury"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
