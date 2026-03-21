@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Play, RotateCcw } from 'lucide-react';
+import { ArrowDown, Loader2, Play, RotateCcw } from 'lucide-react';
 
 const SCROLL_THRESHOLD_SEC = 30;
 
@@ -9,6 +9,7 @@ const SCROLL_THRESHOLD_SEC = 30;
  * Shorts-style progress bar, replay at end, scroll hint after 30s (or end if shorter).
  */
 const TopVideoHeroSection = () => {
+  /** True only after last-frame preview seek completes (seeked) — then show video + play */
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -64,9 +65,7 @@ const TopVideoHeroSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const markReady = () => setIsVideoReady(true);
-
-    /** Show last frame before play (paused); no effect on scroll hint until user plays */
+    /** Show last frame before play (paused); isVideoReady set only in seeked */
     const trySeekToPreviewEnd = () => {
       if (previewSeekDoneRef.current) return;
       const d = video.duration;
@@ -74,9 +73,12 @@ const TopVideoHeroSection = () => {
       const onSeeked = () => {
         previewSeekDoneRef.current = true;
         setProgress((video.currentTime / d) * 100);
+        setIsVideoReady(true);
       };
       video.addEventListener('seeked', onSeeked, { once: true });
-      video.currentTime = Math.max(0, d - 0.06);
+      // Ensure currentTime actually changes so seeked fires (very short clips)
+      const epsilon = d > 0.12 ? 0.06 : Math.max(0.01, d * 0.05);
+      video.currentTime = Math.max(0, d - epsilon);
     };
 
     const onPlay = () => {
@@ -105,17 +107,14 @@ const TopVideoHeroSection = () => {
     };
 
     const onLoadedMetadata = () => {
-      markReady();
       trySeekToPreviewEnd();
     };
 
     const onCanPlay = () => {
-      markReady();
       trySeekToPreviewEnd();
     };
 
     video.addEventListener('loadedmetadata', onLoadedMetadata);
-    video.addEventListener('loadeddata', markReady);
     video.addEventListener('canplay', onCanPlay);
     video.addEventListener('play', onPlay);
     video.addEventListener('pause', onPause);
@@ -123,13 +122,11 @@ const TopVideoHeroSection = () => {
     video.addEventListener('ended', onEnded);
 
     if (video.readyState >= 1) {
-      markReady();
       trySeekToPreviewEnd();
     }
 
     return () => {
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
-      video.removeEventListener('loadeddata', markReady);
       video.removeEventListener('canplay', onCanPlay);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
@@ -153,9 +150,22 @@ const TopVideoHeroSection = () => {
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" aria-label="Intro video">
       <div className="h-16 shrink-0" aria-hidden />
 
-      <div className={`relative w-full overflow-hidden ${heroHeightClass}`}>
+      <div
+        className={`relative w-full overflow-hidden ${heroHeightClass}`}
+        aria-busy={!isVideoReady}
+      >
         {!isVideoReady && (
           <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
+        )}
+
+        {!isVideoReady && (
+          <div className="pointer-events-none absolute inset-0 z-[25] flex flex-col items-center justify-center gap-3">
+            <Loader2
+              className="h-10 w-10 animate-spin text-white/80"
+              aria-hidden
+            />
+            <span className="text-sm text-white/60">Loading video…</span>
+          </div>
         )}
 
         <video
