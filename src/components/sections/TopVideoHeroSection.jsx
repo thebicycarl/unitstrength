@@ -3,13 +3,31 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Loader2, Play, RotateCcw } from 'lucide-react';
 
 const SCROLL_THRESHOLD_SEC = 30;
+/** Min seconds of media buffered from t=0 before showing play (fixed ~39s hero clip) */
+const MIN_BUFFER_BEFORE_PLAY_SEC = 10;
+
+/**
+ * True if buffered ranges cover [0, targetSec] continuously from the start of the file.
+ */
+function bufferedCoversFromStart(buffered, targetSec) {
+  const eps = 0.05;
+  if (!buffered || buffered.length === 0) return false;
+  if (buffered.start(0) > eps) return false;
+  let pos = 0;
+  for (let i = 0; i < buffered.length; i++) {
+    if (buffered.start(i) > pos + eps) return false;
+    pos = Math.max(pos, buffered.end(i));
+    if (pos >= targetSec - eps) return true;
+  }
+  return pos >= targetSec - eps;
+}
 
 /**
  * Intro video — centered play (hidden while playing), tap anywhere to pause,
  * Shorts-style progress bar, replay at end, scroll hint after 30s (or end if shorter).
  */
 const TopVideoHeroSection = () => {
-  /** True once first frame can be shown (clip starts on the intended poster frame) */
+  /** True once enough media is buffered from the start for smoother playback on slow networks */
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -19,6 +37,7 @@ const TopVideoHeroSection = () => {
   const videoRef = useRef(null);
   /** Scroll hint only after real playback reaches threshold */
   const hasPlaybackStartedRef = useRef(false);
+  const isVideoReadyRef = useRef(false);
 
   const pauseVideo = useCallback(() => {
     const video = videoRef.current;
@@ -64,7 +83,13 @@ const TopVideoHeroSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const markReady = () => {
+    const tryMarkReady = () => {
+      if (isVideoReadyRef.current) return;
+      const d = video.duration;
+      if (!d || !Number.isFinite(d) || d <= 0) return;
+      const targetSec = Math.min(MIN_BUFFER_BEFORE_PLAY_SEC, d);
+      if (!bufferedCoversFromStart(video.buffered, targetSec)) return;
+      isVideoReadyRef.current = true;
       setIsVideoReady(true);
     };
 
@@ -93,22 +118,40 @@ const TopVideoHeroSection = () => {
       setProgress(100);
     };
 
+    const onProgress = () => {
+      tryMarkReady();
+    };
+    const onLoadedMetadata = () => {
+      tryMarkReady();
+    };
+    const onDurationChange = () => {
+      tryMarkReady();
+    };
     const onCanPlay = () => {
-      markReady();
+      tryMarkReady();
+    };
+    const onCanPlayThrough = () => {
+      tryMarkReady();
     };
 
+    video.addEventListener('progress', onProgress);
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
+    video.addEventListener('durationchange', onDurationChange);
     video.addEventListener('canplay', onCanPlay);
+    video.addEventListener('canplaythrough', onCanPlayThrough);
     video.addEventListener('play', onPlay);
     video.addEventListener('pause', onPause);
     video.addEventListener('timeupdate', onTimeUpdate);
     video.addEventListener('ended', onEnded);
 
-    if (video.readyState >= 3) {
-      markReady();
-    }
+    tryMarkReady();
 
     return () => {
+      video.removeEventListener('progress', onProgress);
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
+      video.removeEventListener('durationchange', onDurationChange);
       video.removeEventListener('canplay', onCanPlay);
+      video.removeEventListener('canplaythrough', onCanPlayThrough);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
       video.removeEventListener('timeupdate', onTimeUpdate);
@@ -152,7 +195,7 @@ const TopVideoHeroSection = () => {
           ref={videoRef}
           muted={muted}
           playsInline
-          preload="metadata"
+          preload="auto"
           className="absolute inset-0 z-0 h-full w-full cursor-pointer object-contain object-center"
           style={{
             opacity: isVideoReady ? 1 : 0,
