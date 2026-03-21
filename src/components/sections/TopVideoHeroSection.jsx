@@ -3,8 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Loader2, Play, RotateCcw } from 'lucide-react';
 
 const SCROLL_THRESHOLD_SEC = 30;
-/** Min seconds of media buffered from t=0 before showing play (fixed ~39s hero clip) */
+/** Desktop / mouse: prefer a deep buffer before showing play */
 const MIN_BUFFER_BEFORE_PLAY_SEC = 10;
+/** Phones / coarse pointer: WebKit caps prefetch — 10s buffered often never arrives before tap */
+const MIN_BUFFER_MOBILE_SEC = 2;
+/** If buffer gate never clears (aggressive data saver, WebKit quirks), still show UI */
+const READY_FALLBACK_MS = 14000;
 
 /**
  * True if buffered ranges cover [0, targetSec] continuously from the start of the file.
@@ -20,6 +24,26 @@ function bufferedCoversFromStart(buffered, targetSec) {
     if (pos >= targetSec - eps) return true;
   }
   return pos >= targetSec - eps;
+}
+
+function getMinBufferTargetSec() {
+  if (typeof window === 'undefined') return MIN_BUFFER_BEFORE_PLAY_SEC;
+  const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+  const isIOS =
+    /iPad|iPhone|iPod/i.test(ua) ||
+    (typeof navigator !== 'undefined' &&
+      navigator.platform === 'MacIntel' &&
+      navigator.maxTouchPoints > 1);
+  /** WebKit caps MP4 prefetch; 10s buffered often never appears until play */
+  if (isIOS) return MIN_BUFFER_MOBILE_SEC;
+  const narrow = window.matchMedia('(max-width: 768px)').matches;
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  if (narrow && coarse) return MIN_BUFFER_MOBILE_SEC;
+  return MIN_BUFFER_BEFORE_PLAY_SEC;
+}
+
+function usesRelaxedBufferTarget() {
+  return getMinBufferTargetSec() < MIN_BUFFER_BEFORE_PLAY_SEC;
 }
 
 /**
@@ -83,14 +107,43 @@ const TopVideoHeroSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
+    const markReadyNow = () => {
+      if (isVideoReadyRef.current) return;
+      isVideoReadyRef.current = true;
+      setIsVideoReady(true);
+    };
+
     const tryMarkReady = () => {
       if (isVideoReadyRef.current) return;
       const d = video.duration;
       if (!d || !Number.isFinite(d) || d <= 0) return;
-      const targetSec = Math.min(MIN_BUFFER_BEFORE_PLAY_SEC, d);
-      if (!bufferedCoversFromStart(video.buffered, targetSec)) return;
-      isVideoReadyRef.current = true;
-      setIsVideoReady(true);
+      const minBuf = getMinBufferTargetSec();
+      const targetSec = Math.min(minBuf, d);
+      if (bufferedCoversFromStart(video.buffered, targetSec)) {
+        markReadyNow();
+      }
+    };
+
+    /** WebKit mobile often never reports 10s+ buffered until after play(); allow first decodable frame */
+    const tryMarkReadyFromDecodeState = () => {
+      if (isVideoReadyRef.current) return;
+      const d = video.duration;
+      if (!d || !Number.isFinite(d) || d <= 0) return;
+      if (video.readyState < 2) return;
+      if (video.buffered.length === 0) return;
+      const head = Math.min(0.5, d);
+      if (bufferedCoversFromStart(video.buffered, head)) {
+        markReadyNow();
+      }
+    };
+
+    const tryMarkReadyTimeoutFallback = () => {
+      if (isVideoReadyRef.current) return;
+      const d = video.duration;
+      if (!d || !Number.isFinite(d) || d <= 0) return;
+      if (video.readyState >= 2) {
+        markReadyNow();
+      }
     };
 
     const onPlay = () => {
@@ -129,14 +182,31 @@ const TopVideoHeroSection = () => {
     };
     const onCanPlay = () => {
       tryMarkReady();
+      tryMarkReadyFromDecodeState();
     };
     const onCanPlayThrough = () => {
       tryMarkReady();
+      tryMarkReadyFromDecodeState();
     };
+    const onLoadedData = () => {
+      tryMarkReady();
+      tryMarkReadyFromDecodeState();
+      if (!isVideoReadyRef.current && video.readyState >= 2) {
+        const d = video.duration;
+        if (d && Number.isFinite(d) && d > 0 && usesRelaxedBufferTarget()) {
+          markReadyNow();
+        }
+      }
+    };
+
+    const fallbackTimer = window.setTimeout(() => {
+      tryMarkReadyTimeoutFallback();
+    }, READY_FALLBACK_MS);
 
     video.addEventListener('progress', onProgress);
     video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('durationchange', onDurationChange);
+    video.addEventListener('loadeddata', onLoadedData);
     video.addEventListener('canplay', onCanPlay);
     video.addEventListener('canplaythrough', onCanPlayThrough);
     video.addEventListener('play', onPlay);
@@ -145,11 +215,14 @@ const TopVideoHeroSection = () => {
     video.addEventListener('ended', onEnded);
 
     tryMarkReady();
+    tryMarkReadyFromDecodeState();
 
     return () => {
+      window.clearTimeout(fallbackTimer);
       video.removeEventListener('progress', onProgress);
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('durationchange', onDurationChange);
+      video.removeEventListener('loadeddata', onLoadedData);
       video.removeEventListener('canplay', onCanPlay);
       video.removeEventListener('canplaythrough', onCanPlayThrough);
       video.removeEventListener('play', onPlay);
