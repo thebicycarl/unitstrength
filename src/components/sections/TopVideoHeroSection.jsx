@@ -163,7 +163,6 @@ const TopVideoHeroSection = () => {
           muted={muted}
           playsInline
           preload="metadata"
-          poster="/Thumbnail.jpg"
           className="absolute inset-0 z-0 h-full w-full cursor-pointer object-contain object-center"
           style={{
             opacity: isVideoReady ? 1 : 0,
