@@ -9,7 +9,7 @@ const SCROLL_THRESHOLD_SEC = 30;
  * Shorts-style progress bar, replay at end, scroll hint after 30s (or end if shorter).
  */
 const TopVideoHeroSection = () => {
-  /** True only after last-frame preview seek completes (seeked) — then show video + play */
+  /** True once first frame can be shown (clip starts on the intended poster frame) */
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -17,9 +17,8 @@ const TopVideoHeroSection = () => {
   const [progress, setProgress] = useState(0);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const videoRef = useRef(null);
-  /** After seek-to-end preview; scroll hint only counts real playback */
+  /** Scroll hint only after real playback reaches threshold */
   const hasPlaybackStartedRef = useRef(false);
-  const previewSeekDoneRef = useRef(false);
 
   const pauseVideo = useCallback(() => {
     const video = videoRef.current;
@@ -65,20 +64,8 @@ const TopVideoHeroSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    /** Show last frame before play (paused); isVideoReady set only in seeked */
-    const trySeekToPreviewEnd = () => {
-      if (previewSeekDoneRef.current) return;
-      const d = video.duration;
-      if (!d || !Number.isFinite(d) || d <= 0) return;
-      const onSeeked = () => {
-        previewSeekDoneRef.current = true;
-        setProgress((video.currentTime / d) * 100);
-        setIsVideoReady(true);
-      };
-      video.addEventListener('seeked', onSeeked, { once: true });
-      // Ensure currentTime actually changes so seeked fires (very short clips)
-      const epsilon = d > 0.12 ? 0.06 : Math.max(0.01, d * 0.05);
-      video.currentTime = Math.max(0, d - epsilon);
+    const markReady = () => {
+      setIsVideoReady(true);
     };
 
     const onPlay = () => {
@@ -106,27 +93,21 @@ const TopVideoHeroSection = () => {
       setProgress(100);
     };
 
-    const onLoadedMetadata = () => {
-      trySeekToPreviewEnd();
-    };
-
     const onCanPlay = () => {
-      trySeekToPreviewEnd();
+      markReady();
     };
 
-    video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('canplay', onCanPlay);
     video.addEventListener('play', onPlay);
     video.addEventListener('pause', onPause);
     video.addEventListener('timeupdate', onTimeUpdate);
     video.addEventListener('ended', onEnded);
 
-    if (video.readyState >= 1) {
-      trySeekToPreviewEnd();
+    if (video.readyState >= 3) {
+      markReady();
     }
 
     return () => {
-      video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('canplay', onCanPlay);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
@@ -159,12 +140,11 @@ const TopVideoHeroSection = () => {
         )}
 
         {!isVideoReady && (
-          <div className="pointer-events-none absolute inset-0 z-[25] flex flex-col items-center justify-center gap-3">
+          <div className="pointer-events-none absolute inset-0 z-[25] flex items-center justify-center">
             <Loader2
               className="h-10 w-10 animate-spin text-white/80"
-              aria-hidden
+              aria-label="Loading video"
             />
-            <span className="text-sm text-white/60">Loading video…</span>
           </div>
         )}
 
@@ -179,7 +159,7 @@ const TopVideoHeroSection = () => {
             transition: 'opacity 0.4s ease',
           }}
         >
-          <source src="/20260206_135917-optimized.mp4" type="video/mp4" />
+          <source src="/topclipv7-optimized.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
