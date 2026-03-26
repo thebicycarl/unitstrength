@@ -25,39 +25,43 @@ const HeroSection = ({ handleFeatureClick, scrollToSection }) => {
 
   return (
     <section id="main-hero" className="pt-16 min-h-[446px] md:min-h-[90vh] flex items-center justify-center relative overflow-hidden bg-[#959288] md:bg-[#969694]">
-      {/* Video placeholder/loading state */}
       {!isVideoLoaded && (
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#969694] to-[#959288]" />
       )}
-      
-      <video 
+
+      <video
         ref={videoRef}
-        autoPlay 
-        loop 
-        muted 
+        autoPlay
+        loop
+        muted
         playsInline
         preload="metadata"
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.8] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0 transition-opacity duration-500"
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover scale-[0.4] md:scale-[0.68] lg:scale-[0.73] rotate-[0.5deg] translate-x-5 md:translate-x-10 -translate-y-[15px] md:translate-y-0 transition-opacity duration-500"
         style={{ opacity: isVideoLoaded ? 1 : 0 }}
       >
         <source src="/Cut clip v2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-[12.5%] bg-[#959288]"
+        aria-hidden
+      />
+
+      <div className="max-w-7xl mx-auto max-[525px]:pt-14 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-6 max-[525px]:mb-4"
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 -mt-19.8 -translate-x-1">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 max-[525px]:mb-4 -mt-19.8 -translate-x-1">
               <span className="gradient-text">The Ultimate</span>
               <br />
               <span className="text-white [text-shadow:0_3px_8px_rgba(0,0,0,0.6),0_6px_12px_rgba(0,0,0,0.4)]">Enclosed Home Gym</span>
             </h1>
-            <p className="text-white/95 text-lg md:text-xl font-medium mb-8 [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
+            <p className="text-white/95 text-lg md:text-xl font-medium mb-5 max-[525px]:mb-3 [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
               Train hard. • Stay organised. • Save space.
             </p>
             <Button 
