@@ -40,7 +40,7 @@ const Footer = () => {
         
         <div className="border-t border-brand-tertiary/30 mt-12 pt-8 text-center">
           <p className="text-brand-secondary/80">
-            © 2025 Unit Strength. All rights reserved. Proudly designed and built in Toowoomba, Queensland.
+            © 2026 Unit Strength. All rights reserved. Proudly designed and built in Toowoomba, Queensland.
           </p>
         </div>
       </div>
