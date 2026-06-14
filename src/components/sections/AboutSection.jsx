@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, MapPin } from 'lucide-react';
 
 const AboutSection = ({ handleFeatureClick }) => {
   return (
@@ -20,7 +20,7 @@ const AboutSection = ({ handleFeatureClick }) => {
           <div>
             <h2 className="text-4xl font-bold mb-6 text-brand-primary">About us</h2>
             <p className="text-lg text-brand-tertiary mb-6">
-              UNIT Strength was founded out of passion for fitness and innovation. We are proud to design and craft the UNIT One Pro right here in Toowoomba, Queensland. Our precision engineering and local craftsmanship ensures that every UNIT One Pro meets the highest standards of quality and durability, while supporting your workouts and as stylish as your home.
+              UNIT Strength was founded out of passion for fitness and innovation. We are proud to design and craft the UNIT One Pro right here in Sydney, NSW. Our precision engineering and local craftsmanship ensures that every UNIT One Pro meets the highest standards of quality and durability, while supporting your workouts and as stylish as your home.
             </p>
             
             <Button 
@@ -44,12 +44,8 @@ const AboutSection = ({ handleFeatureClick }) => {
                 <span className="text-brand-tertiary">Questions? Call or text Carl on 0492 923 571</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-brand-accent2" />
-                  <span className="text-brand-tertiary">carl@unitstrength.com.au</span>
-                </div>
-                <div className="flex items-center space-x-3">
                   <MapPin className="w-5 h-5 text-brand-accent2" />
-                  <span className="text-brand-tertiary">Toowoomba, Queensland, Australia</span>
+                  <span className="text-brand-tertiary">Sydney, NSW, Australia</span>
                 </div>
               </div>
             </div>

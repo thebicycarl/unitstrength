@@ -17,7 +17,7 @@ const Footer = () => {
               <span className="text-2xl font-bold gradient-text">Strength</span>
             </div>
             <p className="text-brand-secondary/80">
-              Transforming homes with premium fitness solutions designed and built in Queensland.
+              Transforming homes with premium fitness solutions designed and built in NSW.
             </p>
           </div>
           
@@ -32,15 +32,14 @@ const Footer = () => {
             <span className="text-lg font-semibold mb-4 block">Contact</span>
             <div className="space-y-2">
               <p className="text-brand-secondary/80">0492 923 571</p>
-              <p className="text-brand-secondary/80">carl@unitstrength.com.au</p>
-              <p className="text-brand-secondary/80">Toowoomba, QLD</p>
+              <p className="text-brand-secondary/80">Sydney, NSW</p>
             </div>
           </div>
         </div>
         
         <div className="border-t border-brand-tertiary/30 mt-12 pt-8 text-center">
           <p className="text-brand-secondary/80">
-            © 2026 Unit Strength. All rights reserved. Proudly designed and built in Toowoomba, Queensland.
+            © 2026 Unit Strength. All rights reserved. Proudly designed and built in Sydney, NSW.
           </p>
         </div>
       </div>

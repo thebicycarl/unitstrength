@@ -8,7 +8,7 @@ import { toast } from '@/components/ui/use-toast';
 /**
  * ExpressionOfInterestSection Component
  *
- * Form submissions are sent via FormSubmit.co → email to carl@unitstrength.com.au.
+ * Form submissions are sent via FormSubmit.co → email to carlmhockey@gmail.com.
  * No sign-up: first submission sends an activation email to that address; click the
  * link once and the form is active. https://formsubmit.co
  */
@@ -67,7 +67,7 @@ const ExpressionOfInterestSection = () => {
       };
 
       const body = new URLSearchParams(payload).toString();
-      const response = await fetch('https://formsubmit.co/ajax/carl@unitstrength.com.au', {
+      const response = await fetch('https://formsubmit.co/ajax/carlmhockey@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
         body,
@@ -129,12 +129,11 @@ const ExpressionOfInterestSection = () => {
               We've received your expression of interest and will be in touch within 24 hours.
             </p>
             <p className="text-brand-tertiary mb-6">
-              Next batch of UNITs ready <strong>May 2026</strong>. We'll keep you updated on availability and the special offer.
+              We'll keep you updated on availability and the special offer.
             </p>
             <div className="border-t pt-6 mt-6">
               <p className="text-sm text-brand-tertiary mb-2">Questions? Contact us:</p>
               <p className="text-brand-tertiary">0492 923 571</p>
-              <p className="text-brand-tertiary">carl@unitstrength.com.au</p>
             </div>
             <Button 
               onClick={() => {
@@ -165,11 +164,11 @@ const ExpressionOfInterestSection = () => {
               <p className="text-lg text-brand-tertiary mb-2 font-semibold text-brand-accent2">
                 New product offer - $1,000 off plus free installation!
               </p>
-              <p className="text-sm text-brand-tertiary">Toowoomba residents only</p>
+              <p className="text-sm text-brand-tertiary">Sydney residents only</p>
             </div>
             
             <p className="text-lg text-brand-tertiary mb-6">
-              The next batch of UNITs will be ready <strong>May 2026</strong>. Interested in getting in before the new product offer runs out, or just want to know more? Fill out the form below.
+              Interested in getting in before the new product offer runs out, or just want to know more? Fill out the form below.
             </p>
           </div>
         </div>
@@ -218,7 +217,7 @@ const ExpressionOfInterestSection = () => {
                 <Input 
                   id="suburb" 
                   type="text" 
-                  placeholder="Toowoomba" 
+                  placeholder="Sydney" 
                   value={formData.suburb} 
                   onChange={handleChange}
                   required

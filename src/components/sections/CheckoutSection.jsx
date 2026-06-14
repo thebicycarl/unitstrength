@@ -13,7 +13,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
     email: '',
     phone: '',
     address: '',
-    isToowoomba: false
+    isSydney: false
   });
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
@@ -26,7 +26,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
     }));
   };
 
-  const isFormValid = formData.name && formData.email && formData.phone && formData.address && formData.isToowoomba;
+  const isFormValid = formData.name && formData.email && formData.phone && formData.address && formData.isSydney;
 
   // Default to Core Package if no package is selected
   const selectedPkg = selectedPackage || {
@@ -38,7 +38,7 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
   const subtotal = selectedPkg.oldPrice || selectedPkg.price;
   const discount = 1000;
   const delivery = 550;
-  const total = formData.isToowoomba ? (subtotal + delivery - discount - delivery) : (subtotal + delivery);
+  const total = formData.isSydney ? (subtotal + delivery - discount - delivery) : (subtotal + delivery);
 
   const handleProceedToPayment = () => {
     if (isFormValid) {
@@ -103,12 +103,12 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                   </div>
                   <div>
                     <Label htmlFor="address">Delivery Address</Label>
-                    <Input id="address" type="text" placeholder="123 Fitness St, Toowoomba" value={formData.address} onChange={handleChange} />
+                    <Input id="address" type="text" placeholder="123 Fitness St, Sydney" value={formData.address} onChange={handleChange} />
                   </div>
                   <div className="flex items-center space-x-2 pt-2">
-                    <Checkbox id="isToowoomba" checked={formData.isToowoomba} onCheckedChange={(checked) => setFormData(p => ({...p, isToowoomba: checked}))} />
-                    <Label htmlFor="isToowoomba" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      My delivery address is in the Toowoomba region.
+                    <Checkbox id="isSydney" checked={formData.isSydney} onCheckedChange={(checked) => setFormData(p => ({...p, isSydney: checked}))} />
+                    <Label htmlFor="isSydney" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                      My delivery address is in the Sydney region.
                     </Label>
                   </div>
                 </form>
@@ -131,11 +131,11 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                     <span>Delivery & Installation</span>
                     <span>${delivery.toLocaleString()}</span>
                   </div>
-                  <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
+                  <div className={`flex justify-between ${formData.isSydney ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
                     <span>New Product Discount</span>
                     <span>- ${discount.toLocaleString()}</span>
                   </div>
-                   <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
+                   <div className={`flex justify-between ${formData.isSydney ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
                     <span>Free Delivery & Install</span>
                     <span>- ${delivery.toLocaleString()}</span>
                   </div>
@@ -146,13 +146,13 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                   </div>
                 </div>
 
-                {!formData.isToowoomba && (
+                {!formData.isSydney && (
                   <div className="mt-4 bg-brand-accent1/10 border-l-4 border-brand-accent1 text-brand-accent1 p-3 rounded-md">
                      <div className="flex">
                       <div className="py-1"><AlertTriangle className="h-5 w-5 text-brand-accent1 mr-3" /></div>
                       <div>
-                        <p className="font-bold">Toowoomba Region Only</p>
-                        <p className="text-sm">The special offer is only available for delivery within the Toowoomba region.</p>
+                        <p className="font-bold">Sydney Region Only</p>
+                        <p className="text-sm">The special offer is only available for delivery within the Sydney region.</p>
                       </div>
                     </div>
                   </div>
@@ -222,11 +222,11 @@ const CheckoutSection = ({ handleFeatureClick, selectedPackage }) => {
                         <span>Delivery & Installation</span>
                         <span>${delivery.toLocaleString()}</span>
                       </div>
-                      <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
+                      <div className={`flex justify-between ${formData.isSydney ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
                         <span>New Product Discount</span>
                         <span>- ${discount.toLocaleString()}</span>
                       </div>
-                      <div className={`flex justify-between ${formData.isToowoomba ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
+                      <div className={`flex justify-between ${formData.isSydney ? 'text-brand-accent2' : 'text-brand-tertiary/60'}`}>
                         <span>Free Delivery & Install</span>
                         <span>- ${delivery.toLocaleString()}</span>
                       </div>

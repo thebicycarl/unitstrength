@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Phone, Mail } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 
 const PricingCard = ({ title, description, imageSrc, alt, features, price, oldPrice, popular = false, handleFeatureClick }) => (
   <motion.div
@@ -162,7 +162,7 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
         <div className="text-center mb-8 md:mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-brand-primary">Choose your UNIT</h2>
           <p className="text-base sm:text-lg md:text-xl text-brand-tertiary">New product offer: $1000 off, free installation</p>
-          <p className="text-sm sm:text-base md:text-lg text-brand-tertiary/70 mt-1 sm:mt-2">Eligible for Toowoomba residents only. while stocks last</p>
+          <p className="text-sm sm:text-base md:text-lg text-brand-tertiary/70 mt-1 sm:mt-2">While stocks last</p>
         </div>
         
         {/* Desktop Grid */}
@@ -231,10 +231,6 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-brand-accent2" />
                 <span className="text-base text-brand-tertiary">0492 923 571</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-brand-accent2" />
-                <span className="text-base text-brand-tertiary">carl@unitstrength.com.au</span>
               </div>
             </div>
           </div>
@@ -361,10 +357,6 @@ const PricingSection = ({ handleFeatureClick, setSelectedPackage }) => {
                     <div className="flex flex-col items-center space-y-2">
                       <Phone className="w-5 h-5 text-brand-accent2" />
                       <span className="text-sm text-white">0492 923 571</span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2">
-                      <Mail className="w-5 h-5 text-brand-accent2" />
-                      <span className="text-sm text-white">carl@unitstrength.com.au</span>
                     </div>
                   </div>
                 </div>

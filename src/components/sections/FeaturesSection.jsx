@@ -41,7 +41,7 @@ const FeaturesSection = () => {
     { title: "Made with 3mm commercial grade steel, the UNIT ONE Pro is built to last", alt: "Commercial grade steel construction", imageSrc: "/Commercial grade steel.jpg" },
     { title: "Mount to your wall (recommended) or leave free-standing with removable supports", alt: "Mount to wall or free-standing", imageSrc: "/removable supports.jpg" },
     { title: "New to strength training? Buy a UNIT and receive a complementary 30min coaching session", alt: "Coaching session offer", imageSrc: "/coaching session.jpg" },
-    { title: "Locally designed and built in Toowoomba, Queensland", alt: "Locally designed and built in Toowoomba", imageSrc: "/Australian made.png", subtitle: "Some components globally sourced" },
+    { title: "Locally designed and built in Sydney, NSW", alt: "Locally designed and built in Sydney", imageSrc: "/Australian made.png", subtitle: "Some components globally sourced" },
   ];
 
   return (
